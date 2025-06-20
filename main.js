@@ -20,7 +20,7 @@ root.addEventListener("click", (event) => {
   console.log(event.target);
 });
 
-// ✅ Task 5 - Color Dropdown Logic
+// Task 5 - Color Dropdown Logic
 const colorSelection = document.getElementById('color-select');
 let colorChoice = colorSelection.value;
 
@@ -29,7 +29,7 @@ colorSelection.addEventListener('change', function () {
   console.log("User selected:", colorChoice);
 });
 
-// ✅ Task 6 - Click Cell to Color It
+// Task 6 - Click Cell to Color It
 const cells = document.querySelectorAll("td");
 
 cells.forEach((cell) => {
