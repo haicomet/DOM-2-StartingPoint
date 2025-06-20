@@ -1,3 +1,4 @@
+
 // Please feel free to change the JS as you see fit! This is just a starting point.
 function removeRow() {
   const tableBody = document.getElementById('tableBody');
@@ -63,4 +64,22 @@ clrBtn.addEventListener("click", () => {
   cells = document.getElementsByTagName("TD")
   Array.from(cells).forEach((cell) => cell.style.backgroundColor = "white")
 })
+
+function removeColumn() {
+  const tableBody = document.getElementById('tableBody');
+  
+  try {
+    const rows = tableBody.rows; 
+
+    for (let i = 0; i < rows.length; i++) {
+      const row = rows[i];
+      row.deleteCell(0);
+    }
+  } catch (error) {
+    console.error("No more columns to delete", error.message); 
+  }
+}
+
+const removeColumnButton = document.getElementById("remove-column");
+removeColumnButton.addEventListener("click", removeColumn);
 
