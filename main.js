@@ -8,6 +8,7 @@ root.addEventListener("click", (event) => {
 
 let table = document.querySelector("TABLE")
 const addRowBtn = document.getElementById("add-row")
+const addColBtn = document.getElementById("add-column")
 let rows = document.getElementsByTagName("TR")
 let tdCount = rows[0].querySelectorAll("TD").length
 
@@ -21,3 +22,14 @@ addRowBtn.addEventListener("click", function addRow(){
     
 })
 
+
+addColBtn.addEventListener("click", function addCol(){
+  
+  Array.from(rows).forEach(element => {
+    let newCol = document.createElement("TD")
+    element.appendChild(newCol)
+  })
+  
+  tdCount += 1
+  
+})
