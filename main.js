@@ -16,16 +16,5 @@ colorSelection.addEventListener('change' , function(){
 
 })
 
-//Task6
-const colorSelect = document.getElementById("color-select"); // Dropdown
-const cells = document.querySelectorAll("td"); // All table cells
-
-cells.forEach((cell) => {
-  cell.addEventListener("click", () => {
-    const selectedColor = colorSelect.value; // Get selected color
-    cell.style.backgroundColor = selectedColor; // Apply color
-  });
-});
-
 
 
