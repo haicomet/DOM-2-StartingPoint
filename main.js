@@ -1,18 +1,17 @@
-
 // Please feel free to change the JS as you see fit! This is just a starting point.
 
 function removeRow() {
-  const tableBody = document.getElementById('tableBody');
+  const tableBody = document.getElementById("tableBody");
 
   try {
-    tableBody.deleteRow(0); 
+    tableBody.deleteRow(0);
   } catch (error) {
-    console.error("No more rows to delete", error.message); 
+    console.error("No more rows to delete", error.message);
   }
 }
 
 const removeRowButton = document.getElementById("remove-row");
-removeRowButton.addEventListener("click", removeRow); 
+removeRowButton.addEventListener("click", removeRow);
 
 const root = document.getElementById("root");
 root.addEventListener("click", (event) => {
@@ -21,10 +20,10 @@ root.addEventListener("click", (event) => {
 });
 
 // Task 5 - Color Dropdown Logic
-const colorSelection = document.getElementById('color-select');
+const colorSelection = document.getElementById("color-select");
 let colorChoice = colorSelection.value;
 
-colorSelection.addEventListener('change', function () {
+colorSelection.addEventListener("change", function () {
   colorChoice = colorSelection.value;
   console.log("User selected:", colorChoice);
 });
@@ -60,7 +59,7 @@ function fillUnclrdCells() {
   const cells = document.querySelectorAll("td");
   const selectedClr = document.getElementById("colorSelector").value;
 
-  cells.forEach(cell => {
+  cells.forEach((cell) => {
     if (!cell.style.backgroundColor || cell.style.backgroundColor === "white") {
       cell.style.backgroundColor = selectedClr;
     }
@@ -70,7 +69,7 @@ function fillUnclrdCells() {
 document.getElementById("fill-grid").addEventListener("click", fillUnclrdCells);
 
 addColBtn.addEventListener("click", () => {
-  Array.from(rows).forEach(element => {
+  Array.from(rows).forEach((element) => {
     let newCol = document.createElement("TD");
     element.appendChild(newCol);
   });
@@ -80,11 +79,11 @@ addColBtn.addEventListener("click", () => {
 
 clrBtn.addEventListener("click", () => {
   const cells = document.getElementsByTagName("TD");
-  Array.from(cells).forEach((cell) => cell.style.backgroundColor = "white");
+  Array.from(cells).forEach((cell) => (cell.style.backgroundColor = "white"));
 });
 
 function removeColumn() {
-  const tableBody = document.getElementById('tableBody');
+  const tableBody = document.getElementById("tableBody");
 
   try {
     const rows = tableBody.rows;
@@ -100,3 +99,16 @@ function removeColumn() {
 
 const removeColumnButton = document.getElementById("remove-column");
 removeColumnButton.addEventListener("click", removeColumn);
+
+function fillEveryCell() {
+  console.log("🟡 fillEveryCell triggered");
+  const cells = document.querySelectorAll("td");
+  const selectedClr = document.getElementById("colorSelector").value;
+
+  cells.forEach((cell) => {
+    cell.style.backgroundColor = selectedClr;
+  });
+}
+document
+  .getElementById("fill-uncolored")
+  .addEventListener("click", fillEveryCell);
