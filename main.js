@@ -1,4 +1,18 @@
+
 // Please feel free to change the JS as you see fit! This is just a starting point.
+
+function removeRow() {
+  const tableBody = document.getElementById('tableBody');
+
+  try {
+    tableBody.deleteRow(0); 
+  } catch (error) {
+    console.error("No more rows to delete", error.message); 
+  }
+}
+
+const removeRowButton = document.getElementById("remove-row");
+removeRowButton.addEventListener("click", removeRow); 
 
 const root = document.getElementById("root");
 root.addEventListener("click", (event) => {
@@ -6,17 +20,83 @@ root.addEventListener("click", (event) => {
   console.log(event.target);
 });
 
+// ✅ Task 5 - Color Dropdown Logic
+const colorSelection = document.getElementById('color-select');
+let colorChoice = colorSelection.value;
 
-//Task6
-const colorSelect = document.getElementById("color-select"); // Dropdown
-const cells = document.querySelectorAll("td"); // All table cells
+colorSelection.addEventListener('change', function () {
+  colorChoice = colorSelection.value;
+  console.log("User selected:", colorChoice);
+});
+
+// ✅ Task 6 - Click Cell to Color It
+const cells = document.querySelectorAll("td");
 
 cells.forEach((cell) => {
   cell.addEventListener("click", () => {
-    const selectedColor = colorSelect.value; // Get selected color
-    cell.style.backgroundColor = selectedColor; // Apply color
+    const selectedColor = colorSelection.value;
+    cell.style.backgroundColor = selectedColor;
   });
 });
 
+let table = document.querySelector("TABLE");
+const addRowBtn = document.getElementById("add-row");
+const addColBtn = document.getElementById("add-column");
+const clrBtn = document.getElementById("clear-grid");
+let rows = document.getElementsByTagName("TR");
+let tdCount = rows[0].querySelectorAll("TD").length;
 
+addRowBtn.addEventListener("click", () => {
+  let newRow = document.createElement("TR");
 
+  for (let i = 0; i < tdCount; i++)
+    newRow.appendChild(document.createElement("TD"));
+
+  table.appendChild(newRow);
+});
+
+function fillUnclrdCells() {
+  console.log("🟡 fillUnclrdCells triggered");
+  const cells = document.querySelectorAll("td");
+  const selectedClr = document.getElementById("colorSelector").value;
+
+  cells.forEach(cell => {
+    if (!cell.style.backgroundColor || cell.style.backgroundColor === "white") {
+      cell.style.backgroundColor = selectedClr;
+    }
+  });
+}
+
+document.getElementById("fill-grid").addEventListener("click", fillUnclrdCells);
+
+addColBtn.addEventListener("click", () => {
+  Array.from(rows).forEach(element => {
+    let newCol = document.createElement("TD");
+    element.appendChild(newCol);
+  });
+
+  tdCount += 1;
+});
+
+clrBtn.addEventListener("click", () => {
+  const cells = document.getElementsByTagName("TD");
+  Array.from(cells).forEach((cell) => cell.style.backgroundColor = "white");
+});
+
+function removeColumn() {
+  const tableBody = document.getElementById('tableBody');
+
+  try {
+    const rows = tableBody.rows;
+
+    for (let i = 0; i < rows.length; i++) {
+      const row = rows[i];
+      row.deleteCell(0);
+    }
+  } catch (error) {
+    console.error("No more columns to delete", error.message);
+  }
+}
+
+const removeColumnButton = document.getElementById("remove-column");
+removeColumnButton.addEventListener("click", removeColumn);
