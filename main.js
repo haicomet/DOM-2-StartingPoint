@@ -112,3 +112,31 @@ function fillEveryCell() {
 document
   .getElementById("fill-uncolored")
   .addEventListener("click", fillEveryCell);
+
+// click and hold to change multiple cells colors feature----
+let isMouseDown = false; 
+
+function changeColors(event) {
+  const colorSelectElement = document.getElementById("color-select");
+  event.target.style.backgroundColor = colorSelectElement.value;
+}
+
+const cells1 = document.getElementsByTagName("td");
+
+for (let i = 0; i < cells.length; i++) {
+  cells[i].addEventListener("mousedown", function(event) {
+    isMouseDown = true;
+    changeColors(event); 
+  });
+
+  cells[i].addEventListener("mouseover", function(event) {
+    if (isMouseDown) {
+      changeColors(event);
+    }
+  });
+}
+
+document.addEventListener("mouseup", function () {
+  isMouseDown = false;
+});
+//---------------------------------------------------------
