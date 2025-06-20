@@ -7,3 +7,5 @@ function fillEveryCell(){
         cell.style.backgroundColor =selectedClr;
     });
 }
+document.getElementById("fill-uncolored").addEventListener("click", fillEveryCell);
+
