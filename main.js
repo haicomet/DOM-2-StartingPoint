@@ -1,5 +1,34 @@
-// Please feel free to change the JS as you see fit! This is just a starting point.
+//---------click and hold to change multiple cells colors feature----------------
+let isMouseDown = false;
 
+function changeColors(event) {
+  const colorSelectElement = document.getElementById("color-select");
+  event.target.style.backgroundColor = colorSelectElement.value;
+}
+
+const cells1 = document.getElementsByTagName('td');
+
+for (let i = 0; i < cells1.length; i++) {
+  const cell = cells1[i];
+
+  cell.addEventListener("mousedown", function(event) {
+    isMouseDown = true;
+    changeColors(event);
+  });
+
+  cell.addEventListener("mouseover", function(event) {
+    if (isMouseDown) {
+      changeColors(event);
+    }
+  });
+}
+
+document.addEventListener("mouseup", function () {
+  isMouseDown = false;
+});
+//---------------------------------------------------------
+
+//--------------remove row---------------------------------------------
 function removeRow() {
   const tableBody = document.getElementById("tableBody");
 
@@ -12,6 +41,8 @@ function removeRow() {
 
 const removeRowButton = document.getElementById("remove-row");
 removeRowButton.addEventListener("click", removeRow);
+// -------------------------------------------------------------
+
 
 const root = document.getElementById("root");
 root.addEventListener("click", (event) => {
@@ -113,30 +144,3 @@ document
   .getElementById("fill-uncolored")
   .addEventListener("click", fillEveryCell);
 
-// click and hold to change multiple cells colors feature----
-let isMouseDown = false; 
-
-function changeColors(event) {
-  const colorSelectElement = document.getElementById("color-select");
-  event.target.style.backgroundColor = colorSelectElement.value;
-}
-
-const cells1 = document.getElementsByTagName("td");
-
-for (let i = 0; i < cells.length; i++) {
-  cells[i].addEventListener("mousedown", function(event) {
-    isMouseDown = true;
-    changeColors(event); 
-  });
-
-  cells[i].addEventListener("mouseover", function(event) {
-    if (isMouseDown) {
-      changeColors(event);
-    }
-  });
-}
-
-document.addEventListener("mouseup", function () {
-  isMouseDown = false;
-});
-//---------------------------------------------------------
