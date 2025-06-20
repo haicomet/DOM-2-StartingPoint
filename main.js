@@ -29,6 +29,16 @@ colorSelection.addEventListener('change', function () {
   console.log("User selected:", colorChoice);
 });
 
+// ✅ Task 6 - Click Cell to Color It
+const cells = document.querySelectorAll("td");
+
+cells.forEach((cell) => {
+  cell.addEventListener("click", () => {
+    const selectedColor = colorSelection.value;
+    cell.style.backgroundColor = selectedColor;
+  });
+});
+
 let table = document.querySelector("TABLE");
 const addRowBtn = document.getElementById("add-row");
 const addColBtn = document.getElementById("add-column");
@@ -90,4 +100,3 @@ function removeColumn() {
 
 const removeColumnButton = document.getElementById("remove-column");
 removeColumnButton.addEventListener("click", removeColumn);
-
