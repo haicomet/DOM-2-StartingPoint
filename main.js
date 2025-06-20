@@ -32,7 +32,7 @@ colorSelection.addEventListener('change', function () {
 // Task 6 - Click Cell to Color It
 const cells = document.querySelectorAll("td");
 
-cells.forEach((cell) => {
+Array.from(cells).forEach((cell) => {
   cell.addEventListener("click", () => {
     const selectedColor = colorSelection.value;
     cell.style.backgroundColor = selectedColor;
