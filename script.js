@@ -9,3 +9,4 @@ function fillUnclrdCells(){
         }
     });
 } 
+document.getElementById("fill-grid").addEventListener("click", fillUnclrdCells);
