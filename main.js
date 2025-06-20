@@ -5,3 +5,19 @@ root.addEventListener("click", (event) => {
   console.log(event.target.tagName);
   console.log(event.target);
 });
+
+let table = document.querySelector("TABLE")
+const addRowBtn = document.getElementById("add-row")
+let rows = document.getElementsByTagName("TR")
+let tdCount = rows[0].querySelectorAll("TD").length
+
+addRowBtn.addEventListener("click", function addRow(){
+    let newRow = document.createElement("TR")
+
+    for (let i = 0; i < tdCount; i++)
+      newRow.appendChild(document.createElement("TD"))
+    
+    table.appendChild(newRow)
+    
+})
+
