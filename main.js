@@ -1,5 +1,4 @@
-
-// Please feel free to change the JS as you see fit! This is just a starting point.
+// remove row feature-------------------------------
 function removeRow() {
   const tableBody = document.getElementById('tableBody');
 
@@ -12,6 +11,7 @@ function removeRow() {
 
 const removeRowButton = document.getElementById("remove-row");
 removeRowButton.addEventListener("click", removeRow); 
+//--------------------------------------------------
 
 
 const root = document.getElementById("root");
@@ -33,9 +33,9 @@ addRowBtn.addEventListener("click", () => {
     for (let i = 0; i < tdCount; i++)
       newRow.appendChild(document.createElement("TD"))
     
-    table.appendChild(newRow)
-    
+    table.appendChild(newRow)    
 })
+
 function fillUnclrdCells(){
     console.log("🟡 fillUnclrdCells triggered");
     const cells = document.querySelectorAll("td");
@@ -65,6 +65,8 @@ clrBtn.addEventListener("click", () => {
   Array.from(cells).forEach((cell) => cell.style.backgroundColor = "white")
 })
 
+
+//-----remove column feature---------------------------- 
 function removeColumn() {
   const tableBody = document.getElementById('tableBody');
   
@@ -82,4 +84,34 @@ function removeColumn() {
 
 const removeColumnButton = document.getElementById("remove-column");
 removeColumnButton.addEventListener("click", removeColumn);
+//--------------------------------------------------
 
+
+// click and hold to change multiple cells colors feature----
+let isMouseDown = false; 
+
+function changeColors(event) {
+  const colorSelectElement = document.getElementById("color-select");
+  event.target.style.backgroundColor = colorSelectElement.value;
+}
+
+const cells = document.getElementsByTagName("td");
+
+for (let i = 0; i < cells.length; i++) {
+  cells[i].addEventListener("mousedown", function(event) {
+    isMouseDown = true;
+    changeColors(event); 
+  });
+
+  cells[i].addEventListener("mouseover", function(event) {
+    if (isMouseDown) {
+      changeColors(event);
+    }
+  });
+}
+
+document.addEventListener("mouseup", function () {
+  isMouseDown = false;
+});
+
+//---------------------------------------------------------
