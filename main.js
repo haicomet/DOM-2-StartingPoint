@@ -33,6 +33,7 @@ function removeRow() {
   const tableBody = document.getElementById("tableBody");
 
   try {
+    if(tableBody.rows.length > 0)
     tableBody.deleteRow(0);
   } catch (error) {
     console.error("No more rows to delete", error.message);
@@ -83,12 +84,13 @@ addRowBtn.addEventListener("click", () => {
     newRow.appendChild(document.createElement("TD"));
 
   table.appendChild(newRow);
+  setupNewCells();
 });
 
 function fillUnclrdCells() {
   console.log("🟡 fillUnclrdCells triggered");
   const cells = document.querySelectorAll("td");
-  const selectedClr = document.getElementById("colorSelector").value;
+  const selectedClr = document.getElementById("color-select").value;
 
   cells.forEach((cell) => {
     if (!cell.style.backgroundColor || cell.style.backgroundColor === "white") {
@@ -106,6 +108,7 @@ addColBtn.addEventListener("click", () => {
   });
 
   tdCount += 1;
+  setupNewCells();
 });
 
 clrBtn.addEventListener("click", () => {
@@ -134,7 +137,7 @@ removeColumnButton.addEventListener("click", removeColumn);
 function fillEveryCell() {
   console.log("🟡 fillEveryCell triggered");
   const cells = document.querySelectorAll("td");
-  const selectedClr = document.getElementById("colorSelector").value;
+  const selectedClr = document.getElementById("color-select").value;
 
   cells.forEach((cell) => {
     cell.style.backgroundColor = selectedClr;
@@ -144,3 +147,22 @@ document
   .getElementById("fill-uncolored")
   .addEventListener("click", fillEveryCell);
 
+
+  function setupNewCells() {
+    const allCells = document.querySelectorAll('td');
+
+    allCells.forEach(cell => {
+      cell.onclick = function() {
+        this.style.backgroundColor = document.getElementById('color-select').value;
+      };
+      
+      cell.onmousedown = function(e) {
+        isMouseDown = true;
+        changeColors(e);
+      };
+      
+      cell.onmouseover = function(e) {
+        if (isMouseDown) changeColors(e);
+      };
+    });
+  }
